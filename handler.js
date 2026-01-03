@@ -23,26 +23,29 @@ import level from './commands/level.js';
 import { getGroupAdmins } from './lib/message.js';
 import warReminder from './commands/clash/recordatorio.js';
 
-export default function handler(client) {
+export default function initHandler(client) {
+  // 1️⃣ Inicialización al iniciar el bot
   client.on('ready', () => {
-    warReminder(client);  // activa los recordatorios
+    warReminder(client); // activa los recordatorios
     console.log('Recordatorios de guerra programados ✅');
   });
-seeCommands()
 
-export default async (client, m) => {
-  if (!m.message) return
+  // 2️⃣ Cargar comandos
+  seeCommands();
 
-const sender = m.sender 
+  // 3️⃣ Manejar mensajes entrantes
+  client.on('message', async (m) => {
+    if (!m.message) return;
 
-  let body =
-    m.message.conversation ||
-    m.message.extendedTextMessage?.text ||
-    m.message.imageMessage?.caption ||
-    m.message.videoMessage?.caption ||
-    m.message.buttonsResponseMessage?.selectedButtonId ||
-    m.message.listResponseMessage?.singleSelectReply?.selectedRowId ||
-    m.message.templateButtonReplyMessage?.selectedId ||
+    const sender = m.sender;
+    let body =
+      m.message.conversation ||
+      m.message.extendedTextMessage?.text ||
+      m.message.imageMessage?.caption ||
+      m.message.videoMessage?.caption ||
+      m.message.buttonsResponseMessage?.selectedButtonId ||
+      m.message.listResponseMessage?.singleSelectReply?.selectedRowId ||
+      m.message.templateButtonReplyMessage?.selectedId ||
     ''
 
   initDB(m, client)

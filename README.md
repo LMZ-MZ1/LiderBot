@@ -1,7 +1,7 @@
 > [!IMPORTANT]
 > **Este proyecto está en constante evolución. Estamos comprometidos en ofrecer a nuestra comunidad un Bot increíble. Te invitamos a instalarlo y para estar al tanto de todas las novedades.
 <p align="center"> 
-<img src="https://yt3.googleusercontent.com/-K7Y7dKj4hVVm1zxzDDlJkHdnqCFW03BU-Y9cTb-ZjHFxu4JJP79Z_7P5RVEulplIL3BO7zGyg=s160-c-k-c0x00ffffff-no-rj" alt="AlyaBot-MD" style="width: 20%; height: auto; max-width: 100px;">
+<img src="https://cl.pinterest.com/pin/312085449202067751" alt="AlyaBot-MD" style="width: 20%; height: auto; max-width: 100px;">
 
 <p align="center"> 
 <a href="#"><img title="AlyaBot-MD" src="https://img.shields.io/badge/ ¡Disfruta de un Bot totalmente gratuito, con múltiples funciones y de código abierto! -purple?colorA=%239b33b0&colorB=%231c007b&style=for-the-badge"></a> 
@@ -88,4 +88,4 @@ npm start
 ```
 
 ### 🌺 Creditos Principales
-[![Carlos](https://github.com/AzamiJs.png?size=100)](https://github.com/AzamiJs) [![GataDios](https://github.com/GataNina-Li.png?size=100)](https://github.com/GataNina-Li)
+[![LMZ](hsize=100)](https://github.com/LMZ-MZ1) [![Carlos](https://github.com/AzamiJs.png?size=100)](https://github.com/AzamiJs) [![GataDios](https://github.com/GataNina-Li.png?size=100)](https://github.com/GataNina-Li)

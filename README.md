@@ -87,5 +87,5 @@ npm install
 npm start
 ```
 
-### 🌺 Creditos Principales
-[![LMZ](https://github.com/LMZ-MZ1.png?hsize=100)](https://github.com/LMZ-MZ1) [![Carlos](https://github.com/AzamiJs.png?size=100)](https://github.com/AzamiJs) [![GataDios](https://github.com/GataNina-Li.png?size=100)](https://github.com/GataNina-Li)
+###  Propietario
+[![LMZ](https://github.com/LMZ-MZ1.png?hsize=100)](https://github.com/LMZ-MZ1)

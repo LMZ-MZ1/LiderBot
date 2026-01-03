@@ -1,7 +1,7 @@
 > [!IMPORTANT]
 > **Este proyecto está en constante evolución. Estamos comprometidos en ofrecer a nuestra comunidad un Bot increíble. Te invitamos a instalarlo y para estar al tanto de todas las novedades.
 <p align="center"> 
-<img src="https://avatars.githubusercontent.com/u/55085359?v=4" alt="AlyaBot-MD" style="width: 100%; height: auto; max-width: 100px;">
+<img src="https://avatars.githubusercontent.com/u/55085359?v=4" alt="AlyaBot-MD" style="width: 50%; height: auto; max-width: 100px;">
 
 <p align="center"> 
 <a href="#"><img title="AlyaBot-MD" src="https://img.shields.io/badge/ ¡Disfruta de un Bot totalmente gratuito, con múltiples funciones y de código abierto! -purple?colorA=%239b33b0&colorB=%231c007b&style=for-the-badge"></a> 

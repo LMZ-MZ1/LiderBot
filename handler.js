@@ -10,7 +10,7 @@
  # ------------√ ×------------
 */
 
-iimport ws from 'ws';
+import ws from 'ws';
 import moment from 'moment';
 import chalk from 'chalk';
 import fs from 'fs';

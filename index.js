@@ -38,6 +38,12 @@ import db from "./lib/system/database.js";
 import { startSubBot } from './lib/subs.js';
 import { exec, execSync } from "child_process";
 import moment from 'moment-timezone';
+import warReminder from './commands/clash/recordatorio.js'; // ajusta la ruta
+
+client.on('ready', () => {
+  warReminder(client);  // <-- activa los recordatorios
+  console.log('Recordatorios de guerra programados ✅');
+});
 
 const log = {
   info: (msg) => console.log(chalk.bgBlue.white.bold(`INFO`), chalk.white(msg)),

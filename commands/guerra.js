@@ -1,4 +1,11 @@
-import axios from 'axios'
+/*
+ # ------------√ ×------------
+    # Agradecimientos :: LMZ
+
+    - Recuerda dejar los creditos, no quites los creditos de los autores del código!
+    - Puedes modificar esta base a tu gusto, recuerda dejar los creditos correspondiente!
+ # ------------√ ×------------
+*/import axios from 'axios'
 
 let handler = async (m, { conn }) => {
   try {

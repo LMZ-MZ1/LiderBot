@@ -20,9 +20,9 @@ export default {
     const botId = client.user.id.split(':')[0] + "@s.whatsapp.net"
     const botSettings = global.db.data.settings[botId] || {}
 
-    const botname = botSettings.namebot || 'Ai Surus'
-    const botname2 = botSettings.namebot2 || 'Surus'
-    const monedas = botSettings.currency || 'BitCoins'
+    const botname = botSettings.namebot || 'LegnaMetalZoa'
+    const botname2 = botSettings.namebot2 || 'LegnaMetalZoa'
+    const monedas = botSettings.currency || 'Puntos de guerra'
     const banner = botSettings.banner
     const prefijo = botSettings.prefijo
     const owner = botSettings.owner
@@ -110,7 +110,7 @@ await client.sendMessage(
         },
         externalAdReply: {
           title: botname,
-          body: `${botname2}, Built With 💛 By Stellar`,
+          body: `${botname2}, LegnaMetalZoa`,
           showAdAttribution: false,
           thumbnailUrl: banner,
           mediaType: 1,

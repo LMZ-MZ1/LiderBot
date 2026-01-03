@@ -16,7 +16,7 @@
 import fs from 'fs';
 import chalk from 'chalk';
 
-global.owner = ['5492916450307']
+global.owner = ['5212226671751']
 
 global.sessionName = 'Sessions/Owner'
 global.version = '^3.0'
@@ -27,17 +27,17 @@ global.msgglobal = '[Error: *TypeError*] fetch failed'
 globalThis.dev = '☄︎ ᴘᴏᴡᴇʀᴇᴅ ʙʏ sᴛᴇʟʟᴀʀ'
 
 global.api = {
-  url: 'https://api.stellarwa.xyz',
+  url: 'https://royaleapi.com/clan/QGVQPY0Y',
   key: 'Diamond'
 }
 
 global.bot = {
-  api: 'https://api.stellarwa.xyz',
-  web: 'https://bot.stellarwa.xyz'
+  api: 'https://royaleapi.com/clan/QGVQPY0Y',
+  web: 'https://royaleapi.com/clan/QGVQPY0Y'
 }
 
 global.mods = [
-  '5492916450307'
+  '5212226671751'
 ]
 
 global.mess = {

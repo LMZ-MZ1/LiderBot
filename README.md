@@ -88,4 +88,4 @@ npm start
 ```
 
 ###  Propietario
-[![LMZ](https://github.com/LMZ-MZ1.png?hsize=50)](https://github.com/LMZ-MZ1)
+[![LMZ](https://github.com/LMZ-MZ1.png?hsize=10)](https://github.com/LMZ-MZ1)

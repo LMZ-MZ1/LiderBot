@@ -3,12 +3,14 @@ import axios from 'axios'
 export default {
   command: ['guerra'],
   category: 'clash',
-  run: async (client, m, args, command) => {
+  run: async (client, m) => {
     try {
       const url = `${global.clashRoyale.baseUrl}${global.clashRoyale.currentWarEndpoint}`
 
       const res = await axios.get(url, {
-        headers: { Authorization: `Bearer ${global.clashRoyale.apiKey}` }
+        headers: {
+          Authorization: `Bearer ${global.clashRoyale.apiKey}`
+        }
       })
 
       const war = res.data
@@ -30,20 +32,30 @@ export default {
       texto += `👥 Participantes: ${war.participants?.length || 0}\n`
       texto += `⏳ Fin de guerra: ${war.warEndTime || 'Desconocido'}\n`
 
-      // Enviando mensaje al chat, con el mismo estilo que otros comandos
-      await client.sendMessage(
-        m.chat,
-        { text: texto },
-        { quoted: m }
-      )
+      await m.reply(texto)
 
     } catch (err) {
-      if (!err.response) {
-        return client.reply(m.chat, '❌ Error de conexión con Clash Royale', m)
-      }
+      if (!err.response) return m.reply('❌ Error de conexión con Clash Royale')
 
-      const errores = {
-        400: '❌ Petición incorrecta (400)',
-        403: '❌ Acceso denegado (IP o token inválido)',
-        404: '❌ Clan no encontrado',
-        429: '❌ Límite de peticione
+      switch (err.response.status) {
+        case 400:
+          m.reply('❌ Petición incorrecta (400)')
+          break
+        case 403:
+          m.reply('❌ Acceso denegado (IP o token inválido)')
+          break
+        case 404:
+          m.reply('❌ Clan no encontrado')
+          break
+        case 429:
+          m.reply('❌ Límite de peticiones alcanzado')
+          break
+        case 503:
+          m.reply('⚠️ API en mantenimiento')
+          break
+        default:
+          m.reply('❌ Error desconocido de la API')
+      }
+    }
+  },
+}

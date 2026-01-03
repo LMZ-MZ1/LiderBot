@@ -67,6 +67,11 @@ La versión actual aquí para utilidad de Clash Royale es simplemente un mod de 
 <details>
 <summary><strong>🦦 Cloud</strong> — Shell</summary>
 
+En Caso de que quieras borrar el bot de cloud shell 
+```bash
+rm -rf LiderBot
+```
+
 ```bash
 git clone https://github.com/LMZ-MZ1/LiderBot
 ```

@@ -52,39 +52,33 @@ export default function initHandler(client) {
     initDB(m, client);
     antilink(client, m);
 
-    // Aquí puedes seguir con más lógica de manejo de mensajes
-  }); // <-- cierre del client.on('message')
-} // <-- cierre de initHandler
-  // # Función de Prefijo de Sub-Bot hecho por ZyxlJs, su funcion es: NameBot/comando! 
-  // # Ejemplo: Megumin/menu
+    // -----------------------------
+    // Lógica de prefijos que antes estaba fuera
+    // -----------------------------
+    const from = m.key.remoteJid;
+    const idDD = client.user.id.split(':')[0] + "@s.whatsapp.net" || '';
+    const rawPrefijo = global.db.data.settings[idDD]?.prefijo || '';
+    const prefas = Array.isArray(rawPrefijo) ? rawPrefijo : rawPrefijo ? [rawPrefijo] : ['#', '.', '/'];
 
-  const from = m.key.remoteJid
-  const idDD = client.user.id.split(':')[0] + "@s.whatsapp.net" || ''
-  const rawPrefijo = global.db.data.settings[idDD].prefijo || ''
-  const prefas = Array.isArray(rawPrefijo) ? rawPrefijo : rawPrefijo ? [rawPrefijo] : ['#', '.', '/'] || ['#', '.', '/']
+    const rawBotname = global.db.data.settings[idDD]?.namebot2 || 'Diamond';
+    const botname2 = /^[\w\s]+$/.test(rawBotname) ? rawBotname : 'San';
 
-const rawBotname = global.db.data.settings[idDD].namebot2 || 'Diamond'
+    const shortForms = [
+      botname2.charAt(0),
+      botname2.split(" ")[0],
+      botname2.split(" ")[0].slice(0, 2),
+      botname2.split(" ")[0].slice(0, 3)
+    ];
 
-const isValidBotname = /^[\w\s]+$/.test(rawBotname)
-const botname2 = isValidBotname ? rawBotname : 'San'
+    const prefixes = shortForms.map(name => `${name}`);
+    prefixes.unshift(botname2);
 
-const shortForms = [
-  botname2.charAt(0),
-  botname2.split(" ")[0],
-  botname2.split(" ")[0].slice(0, 2),
-  botname2.split(" ")[0].slice(0, 3)
-]
+    const prefixo = prefas.join('');
+    globalThis.prefix = new RegExp(`^(${prefixes.join('|')})?[${prefixo}]`, 'i');
 
-const prefixes = shortForms.map(name => `${name}`)
-prefixes.unshift(botname2)
-
-const prefixo = prefas.join('')
-
-globalThis.prefix = new RegExp(`^(${prefixes.join('|')})?[${prefixo}]`, 'i')
-
-  const prefixMatch = body.match(globalThis.prefix)
-  const prefix = prefixMatch ? prefixMatch[0] : null
-  if (!prefix) return
+    const prefixMatch = body.match(globalThis.prefix);
+    const prefix = prefixMatch ? prefixMatch[0] : null;
+    if (!prefix) return;
 
   const args = body.slice(prefix.length).trim().split(/ +/)
   const command = args.shift()?.toLowerCase()

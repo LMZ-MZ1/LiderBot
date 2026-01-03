@@ -1,7 +1,7 @@
 > [!IMPORTANT]
 > **Este proyecto está en constante evolución. Estamos comprometidos en ofrecer a nuestra comunidad un Bot increíble. Te invitamos a instalarlo y para estar al tanto de todas las novedades.
 <p align="center"> 
-<img src="https://pin.it/3rT2CglCS" alt="AlyaBot-MD" style="width: 20%; height: auto; max-width: 100px;">
+<img src="https://assets.pinterest.com/ext/embed.html?id=312085449202067751" height="615" width="345" frameborder="0" scrolling="no" alt="AlyaBot-MD" style="width: 20%; height: auto; max-width: 100px;">
 
 <p align="center"> 
 <a href="#"><img title="AlyaBot-MD" src="https://img.shields.io/badge/ ¡Disfruta de un Bot totalmente gratuito, con múltiples funciones y de código abierto! -purple?colorA=%239b33b0&colorB=%231c007b&style=for-the-badge"></a> 

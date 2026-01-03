@@ -46,11 +46,15 @@ export default function initHandler(client) {
       m.message.buttonsResponseMessage?.selectedButtonId ||
       m.message.listResponseMessage?.singleSelectReply?.selectedRowId ||
       m.message.templateButtonReplyMessage?.selectedId ||
-    ''
+      ''; // <--- cerramos con string vacío
 
-  initDB(m, client)
-  antilink(client, m)
+    // Inicializa DB y funciones
+    initDB(m, client);
+    antilink(client, m);
 
+    // Aquí puedes seguir con más lógica de manejo de mensajes
+  }); // <-- cierre del client.on('message')
+} // <-- cierre de initHandler
   // # Función de Prefijo de Sub-Bot hecho por ZyxlJs, su funcion es: NameBot/comando! 
   // # Ejemplo: Megumin/menu
 

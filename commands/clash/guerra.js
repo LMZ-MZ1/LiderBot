@@ -30,7 +30,6 @@ export default {
       texto += `👥 Participantes: ${war.participants?.length || 0}\n`
       texto += `⏳ Fin de guerra: ${war.warEndTime || 'Desconocido'}\n`
 
-      // Enviando mensaje al chat, con el mismo estilo que otros comandos
       await client.sendMessage(
         m.chat,
         { text: texto },
@@ -46,4 +45,12 @@ export default {
         400: '❌ Petición incorrecta (400)',
         403: '❌ Acceso denegado (IP o token inválido)',
         404: '❌ Clan no encontrado',
-        429: '❌ Límite de peticione
+        429: '❌ Límite de peticiones alcanzado',
+        503: '⚠️ API en mantenimiento'
+      }
+
+      const mensaje = errores[err.response.status] || '❌ Error desconocido de la API'
+      await client.reply(m.chat, mensaje, m)
+    }
+  }
+}

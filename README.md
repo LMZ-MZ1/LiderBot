@@ -72,7 +72,7 @@ git clone https://github.com/LMZ-MZ1/LiderBot
 ```
 
 ```bash
-cd AlyaBot-MD
+cd LiderBot
 ```
 
 ```bash

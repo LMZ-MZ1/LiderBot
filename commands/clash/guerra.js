@@ -6,7 +6,6 @@ export default {
   run: async (client, m, args, command) => {
     try {
       const url = `${global.clashRoyale.baseUrl}${global.clashRoyale.currentWarEndpoint}`
-
       const res = await axios.get(url, {
         headers: { Authorization: `Bearer ${global.clashRoyale.apiKey}` }
       })

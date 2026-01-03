@@ -21,13 +21,13 @@ import initDB from './lib/system/initDB.js';
 import antilink from './commands/antilink.js';
 import level from './commands/level.js';
 import { getGroupAdmins } from './lib/message.js';
-import warReminder from './commands/clash/recordatorio.js';// ajusta la ruta
+import warReminder from './commands/clash/recordatorio.js';
 
-client.on('ready', () => {
-  warReminder(client);  // <-- activa los recordatorios
-  console.log('Recordatorios de guerra programados ✅');
-});
-
+export default function handler(client) {
+  client.on('ready', () => {
+    warReminder(client);  // activa los recordatorios
+    console.log('Recordatorios de guerra programados ✅');
+  });
 seeCommands()
 
 export default async (client, m) => {

@@ -71,7 +71,7 @@ En Caso de que quieras borrar el bot de cloud shell
 ```bash
 rm -rf LiderBot
 ```
-
+### Instalación desde cero
 ```bash
 git clone https://github.com/LMZ-MZ1/LiderBot
 ```
@@ -82,6 +82,10 @@ cd LiderBot
 
 ```bash
 yarn install
+```
+
+```bash
+yarn add node-cron
 ```
 
 ```bash

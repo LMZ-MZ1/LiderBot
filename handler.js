@@ -23,13 +23,6 @@ import level from './commands/level.js';
 import { getGroupAdmins } from './lib/message.js';
 import warReminder from './commands/clash/recordatorio.js';
 
-export default function initHandler(client) {
-  // 1️⃣ Inicialización al iniciar el bot
-  client.on('ready', () => {
-    warReminder(client); // activa los recordatorios
-    console.log('Recordatorios de guerra programados ✅');
-  });
-
   // 2️⃣ Cargar comandos
   seeCommands();
 
@@ -205,5 +198,4 @@ if (botprimaryId && botprimaryId !== selfId) {
   // valid(client, m, command)
   level(m)
   level(m)
-});
-}
+};

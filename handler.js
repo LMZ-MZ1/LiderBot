@@ -204,4 +204,6 @@ if (botprimaryId && botprimaryId !== selfId) {
 
   // valid(client, m, command)
   level(m)
-};
+  level(m)
+});
+}

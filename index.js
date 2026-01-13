@@ -23,7 +23,6 @@ import { smsg } from "./lib/message.js";
 import db from "./lib/system/database.js";
 import { startSubBot } from './lib/subs.js';
 import { exec, execSync } from "child_process";
-import warReminder from './commands/clash/recordatorio.js';
 
 const log = {
   info: (msg) => console.log(chalk.bgBlue.white.bold(`INFO`), chalk.white(msg)),
@@ -65,11 +64,11 @@ let phoneInput = "";
 
 const { say } = cfonts
 
-say('LegnaMetalZoa \nBarush', {
+say('LegnaMetalZoa ', {
 align: 'center',           
 gradient: ['red', 'blue'] 
 })
-say('WhatsApp Multi Device, Hecho Con Amor Por LMZ|Barush', {
+say('WhatsApp Multi Device, Hecho Con Amor Por Barush|LMZ', {
 font: 'console',
 align: 'center',
 gradient: ['blue', 'magenta']

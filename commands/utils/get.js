@@ -6,10 +6,10 @@ export default {
   category: 'utils',
   run: async (client, m, args) => {
     const text = args[0]
-    if (!text) return m.reply('《✧》 Ingresa un enlace para realizar la solicitud.')
+    if (!text) return m.reply('🍒 Ingresa un enlace para realizar la solicitud.')
 
     if (!/^https?:\/\//.test(text))
-      return m.reply('《✧》 Ingresa un enlace válido que comience en *https://* o *http://*')
+      return m.reply('🌾 Ingresa un enlace válido que comience en *https://* o *http://*')
 
     try {
       const response = await fetch(text)
@@ -24,11 +24,11 @@ export default {
       const buffer = await response.buffer()
 
       if (/image\/(jpeg|png|gif|webp)/.test(contentType) || ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
-        return await client.sendMessage(m.chat, { image: buffer, caption: `《✧》 Imagen desde: ${text}` }, { quoted: m })
+        return await client.sendMessage(m.chat, { image: buffer, caption: null }, { quoted: m })
       }
 
       if (/video\/(mp4|webm|ogg)/.test(contentType) || ['mp4', 'webm', 'ogg'].includes(ext)) {
-        return await client.sendMessage(m.chat, { video: buffer, caption: `《✧》 Video desde: ${text}` }, { quoted: m })
+        return await client.sendMessage(m.chat, { video: buffer, caption: null }, { quoted: m })
       }
 
       if (/audio\/(mpeg|ogg|mp3|wav)/.test(contentType) || ['mp3', 'wav', 'ogg'].includes(ext) || contentType === 'application/octet-stream') {

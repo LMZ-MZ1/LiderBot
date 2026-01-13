@@ -9,10 +9,10 @@ export default {
 
     if (!db.data.chats[chatId]?.nsfw)
       return m.reply(
-        'ꕥ Los comandos de *NSFW* están desactivados en este grupo. Usa `.enable nsfw` para activarlos.',
+        '🌽 Los comandos de *NSFW* están desactivados en este grupo.',
       )
 
-    if (!args[0]) return m.reply('《✧》 Por favor, ingresa un *tag* para realizar la búsqueda.')
+    if (!args[0]) return m.reply('🍒 Por favor, ingresa un *tag* para realizar la búsqueda.')
 
     await m.reply(mess.wait)
 
@@ -24,7 +24,7 @@ export default {
       const data = await res.json()
 
       if (!Array.isArray(data.results) || data.results.length === 0)
-        return m.reply(`《✧》 No se encontraron resultados para *${tag}*. Intenta con otro término.`)
+        return m.reply(`🌽 No se encontraron resultados para *${tag}*. Intenta con otro término.`)
 
       const randomImage = data.results[Math.floor(Math.random() * data.results.length)]
 

@@ -9,20 +9,13 @@ export default {
     const who = await resolveLidToRealJid(who2, client, m.chat);
 
     if (!who2)
-      return m.reply(`《✧》 Etiqueta o menciona al usuario del que quieras ver su foto de perfil.`)
+      return m.reply(`🍒 Etiqueta o menciona al usuario del que quieras ver su foto de perfil.`)
 
     try {
       const img = await client.profilePictureUrl(who, 'image').catch(() => null)
 
       if (!img)
-        return client.sendMessage(
-          m.chat,
-          {
-            text: `《✧》 No se pudo obtener la foto de perfil de @${who.split('@')[0]}.`,
-            mentions: [who],
-          },
-          { quoted: m },
-        )
+        return m.reply('🦩 No se pudo obtener la foto de perfil.')
 
       await client.sendMessage(m.chat, { image: { url: img }, caption: null }, { quoted: m })
     } catch {

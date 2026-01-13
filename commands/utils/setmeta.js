@@ -8,7 +8,7 @@ export default {
 
     if (!args || args.length === 0)
       return m.reply(
-        '《✧》 Por favor, ingresa los metadatos que deseas asignar a tus stickers.',
+        '🍒 Por favor, ingresa los metadatos que deseas asignar a tus stickers.',
       )
 
     try {
@@ -18,12 +18,9 @@ export default {
       user.metadatos = metadatos01 || ''
       user.metadatos2 = metadatos02 || ''
 
-      await client.sendMessage(
+      await client.reply(
         m.chat,
-        {
-          text: `✎ Los metadatos de tus stickers se han actualizado correctamente.`,
-        },
-        { quoted: m },
+        `🌽 Los metadatos de tus stickers se han actualizado correctamente.`, m
       )
     } catch (e) {
       await m.reply(msgglobal)

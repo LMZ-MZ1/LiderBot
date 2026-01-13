@@ -11,14 +11,14 @@ const joinCommands = [
   '!invite', '.invite', '+invite'
 ]
 
-export default async (client, m) => {
+export default async (m, client) => {
   if (!m.isGroup || !m.text) return
 
   const groupMetadata = await client.groupMetadata(m.chat).catch(() => null)
   if (!groupMetadata) return
 
   const participants = groupMetadata.participants || []
-  const groupAdmins = participants.filter(p => p.admin).map(p => p.phoneNumber || p.jid)
+  const groupAdmins = participants.filter(p => p.admin).map(p => p.phoneNumber || p.jid || p.id || p.lid)
   const isAdmin = groupAdmins.includes(m.sender)
   const botId = client.user.id.split(':')[0] + '@s.whatsapp.net'
   const isBotAdmin = groupAdmins.includes(botId)

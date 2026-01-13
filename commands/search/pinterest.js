@@ -9,7 +9,7 @@ export default {
 
     if (!text) {
       return m.reply(
-        `《✧》 Ingresa un *término* de búsqueda o un enlace de *Pinterest*.`,
+        `🍒 Ingresa un *término* de búsqueda o un enlace de *Pinterest*.`,
       )
     }
 
@@ -23,9 +23,10 @@ export default {
         const mediaType = ['image', 'video'].includes(result.type) ? result.type : 'document'
 
         const message2 =
-          `> ➩ Resultados para › *${result.title}*\n` +
-          `✐ Author › *${result.author}*\n` +
-          `✐ Tipo › *${result.type}*\n\n${dev}`
+          `🍁 ꨩᰰ𑪐𑂺 ˳ ׄ 𝖯𝗂𝗇𝗍𝖾𝗋𝖾𝗌𝗍 𝖣𝗈𝗐𝗇𝗅𝗈𝖺𝖽𝖾𝗋  ࣭𑁯ᰍ   ̊ ܃܃\n\n` +
+          `> 🍃 ᩴᩴ̴𖫲᮫ִ۫𝆬  Resultados para tu enlace › *${text}*\n\n` +
+          `𖣣ֶㅤ֯⌗ 🍄̷ ׄ ⬭ Título › *${result.title}*\n` +
+          `𖣣ֶㅤ֯⌗ 🍄̷ ׄ ⬭ Tipo › *${isVideo ? "Video" : "Imagen"}*`; 
 
         await client.sendMessage(
           m.chat,
@@ -48,12 +49,13 @@ export default {
         const result = json[index]
 
         const message =
-          `➩  Resultados para › *${text}*\n\n` +
-          `ꕥ Título › *${result.title}*\n` +
-          `❖  Descripción › *${result.description}*\n` +
-          `✿  Autor › *${result.full_name}*\n` +
-          `♡  Likes › *${result.likes}*\n` +
-          `❀  Publicado › *${result.created}*\n\n${dev}`
+          `🍁 ꨩᰰ𑪐𑂺 ˳ ׄ 𝖯𝗂𝗇𝗍𝖾𝗋𝖾𝗌𝗍 𝖲𝖾𝖺𝗋𝖼𝗁 ࣭𑁯ᰍ   ̊ ܃܃\n\n` +
+          `> 🍃 ᩴᩴ̴𖫲᮫ִ۫𝆬   Resultados para › *${text}*\n\n` +
+          `𖣣ֶㅤ֯⌗ 🍄̷ ׄ ⬭  Título › *${result.title}*\n` +
+          `𖣣ֶㅤ֯⌗ 🍄̷ ׄ ⬭  Descripción › *${result.description}*\n` +
+          `𖣣ֶㅤ֯⌗ 🍄̷ ׄ ⬭  Autor › *${result.full_name}*\n` +
+          `𖣣ֶㅤ֯⌗ 🍄̷ ׄ ⬭  Likes › *${result.likes}*\n` +
+          `𖣣ֶㅤ֯⌗ 🍄̷ ׄ ⬭  Publicado › *${result.created}*`;
 
         await client.sendMessage(
           m.chat,

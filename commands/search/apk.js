@@ -6,7 +6,7 @@ export default {
   run: async (client, m, args) => {
     if (!args || !args.length) {
       return m.reply(
-        '《✧》 Ingresa el *nombre* de la *aplicación*.',
+        '🍒 Ingresa el *nombre* de la *aplicación*.',
       )
     }
 
@@ -21,20 +21,14 @@ export default {
       const data = response.data.data
 
       if (data.name && data.dl) {
-        const response = `➩ *Nombre ›* ${data.name}
+        const response = `ㅤ۟∩　ׅ　🥽໌　ׅ　🅐pk 🅜od　ׄᰙ　ׅ
 
-> ❖ *Paquete ›* ${data.package}
-> ✿ *Última actualización ›* ${data.lastUpdated}
-> ☆ *Tamaño ›* ${data.size}`
+𖣣ֶㅤ֯⌗ 🫖̷ ׄ ⬭ *Nombre ›* ${data.name}
+𖣣ֶㅤ֯⌗ 🫖̷ ׄ ⬭ *Paquete ›* ${data.package}
+𖣣ֶㅤ֯⌗ 🫖̷ ׄ ⬭ *Última actualización ›* ${data.lastUpdated}
+𖣣ֶㅤ֯⌗ 🫖̷ ׄ ⬭ *Tamaño ›* ${data.size}`
 
-        await client.sendMessage(
-          m.chat,
-          {
-            image: { url: data.banner },
-            caption: response,
-          },
-          { quoted: m },
-        )
+    await client.sendContextInfoIndex(m.chat, response, {}, m, true, {})
 
         await client.sendMessage(
           m.chat,
@@ -47,7 +41,7 @@ export default {
           { quoted: m },
         )
       } else {
-        await client.reply(m.chat, `《✧》 No se encontró la aplicación solicitada.`, m)
+        await client.reply(m.chat, `🌽 No se encontró la aplicación solicitada.`, m)
       }
     } catch (error) {
       await m.reply(msgglobal)

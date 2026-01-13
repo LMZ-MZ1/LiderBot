@@ -11,7 +11,7 @@ export default {
     if (!args || !args.length) {
       return client.reply(
         m.chat,
-        `《✧》 Ingresa un término de búsqueda.`,
+        `🍒 Ingresa un término de búsqueda.`,
         m,
       )
     }
@@ -26,34 +26,26 @@ export default {
       const json = await res.json()
 
       if (!json || !json.data || !json.data.length) {
-        return client.reply(m.chat, `《✧》 No se encontraron resultados para "${query}".`, m)
+        return client.reply(m.chat, `🌽 No se encontraron resultados para "${query}".`, m)
       }
 
       let message = ``
       json.data.forEach((result, index) => {
         message += `➩ *Título ›* ${result.title}
 
-✎ *Autor ›* ${result.author.nickname} (@${result.author.unique_id})
-ꕥ *Reproducciones ›* ${result.stats.views}
-❖ *Comentarios ›* ${result.stats.comments}
-❒ *Compartidos ›* ${result.stats.shares}
-♡ *Me gusta ›* ${result.stats.likes}
-★ *Descargas ›* ${result.downloads}
-❀ *Duración ›* ${result.duration}
-✧ *URL ›* https://www.tiktok.com/@${result.author.unique_id}/video/${result.video_id}
+𖹭  ׄ  ְ 🥗 *Autor ›* ${result.author.nickname} (@${result.author.unique_id})
+𖹭  ׄ  ְ 🥗 *Reproducciones ›* ${result.stats.views}
+𖹭  ׄ  ְ 🥗 *Comentarios ›* ${result.stats.comments}
+𖹭  ׄ  ְ 🥗 *Compartidos ›* ${result.stats.shares}
+𖹭  ׄ  ְ 🥗 *Me gusta ›* ${result.stats.likes}
+𖹭  ׄ  ְ 🥗 *Descargas ›* ${result.downloads}
+𖹭  ׄ  ְ 🥗 *Duración ›* ${result.duration}
+𖹭  ׄ  ְ 🥗 *URL ›* https://www.tiktok.com/@${result.author.unique_id}/video/${result.video_id}
 
 ${index < json.data.length - 1 ? '╾۪〬─ ┄۫╌ ׄ┄┈۪ ─〬 ׅ┄╌ ۫┈ ─ׄ─۪〬 ┈ ┄۫╌ ┈┄۪ ─ׄ〬╼' : ''}
         `
       })
-
-      await client.sendMessage(
-        m.chat,
-        {
-          image: { url: banner },
-          caption: message.trim(),
-        },
-        { quoted: m },
-      )
+    await client.sendContextInfoIndex(m.chat, message, {}, m, true, {})
     } catch (e) {
       await m.reply(msgglobal)
     }

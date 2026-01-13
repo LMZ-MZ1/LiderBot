@@ -21,18 +21,12 @@ CR-Líder es un bot de WhatsApp para grupos de Clash Royale basado en `baileys`.
 - Gestión de grupos de clanes de Clash Royale
 - Información en tiempo real de guerras de clanes
 - Integración con Royale API
+- Gestión de grupos
+- Juegos interactivos
+- Integración con APIs externas
 ---
 
 ## 🌾 Informaciones Importantes
-
-<details>
-<summary><strong>⛄ Información</strong> — Warning</summary>
-
-**El bot no funciona en Termux bajo ninguna circunstancia.**  
-No ofrecemos soporte, compatibilidad ni soluciones para ese entorno.  
-**Para usar el bot, es obligatorio ejecutarlo en un entorno distinto a Termux**, ya sea un servidor, hosting o cualquier plataforma externa recomendada.
-
-</details>
 
 <details>
 <summary><strong>⛄ Información</strong> — Recomendado</summary>
@@ -50,28 +44,22 @@ Si editas el bot, debes mantener los créditos principales y no borrarlos bajo n
 
 </details>
 
-<details>
-<summary><strong>⛄ Información</strong> — Oficial2</summary>
-
-Quiero dejar algo completamente claro: esta base no es propia, fue desarrollada por **DevZyxlJs**  
-Fue creada desde cero por **AzamiJs**, quien posteriormente se retiró del proyecto.  
-Desde entonces, durante todos estos meses, fue **DevZyxlJs**  quien la ha mejorado, optimizado y evolucionado hasta convertirla en lo que es hoy.
-La versión actual aquí para utilidad de Clash Royale es simplemente un mod de este proyecto. Por lo que no tiene relación con el trabajo de **DevZyxlJs**  ni con la identidad oficial de su proyecto.
-
-</details>
-
 ---
 
-### Instalación en CloudShell
+### Instalaciónes Básicas
 
 <details>
-<summary><strong>🦦 Cloud</strong> — Shell</summary>
+<summary><strong>🦦 Cloud</strong> — Shell o PowerShell</summary>
 
 En Caso de que quieras borrar el bot de cloud shell 
 ```bash
 rm -rf LiderBot
 ```
-### Instalación desde cero
+o PowerShell
+```bash
+Remove-Item -Recurse -Force LiderBot
+```
+
 ```bash
 git clone https://github.com/LMZ-MZ1/LiderBot
 ```
@@ -95,6 +83,90 @@ npm install
 ```bash
 npm start
 ```
+
+</details>
+
+<details>
+<summary><strong>🦦 Termux</strong> — Manualmente</summary>
+
+```bash
+termux-setup-storage
+```
+```bash
+apt update && apt upgrade && pkg install -y git nodejs ffmpeg imagemagick yarn
+```
+
+```bash
+git clone https://github.com/DevZyxlJs/AlyaBot-MD
+```
+
+```bash
+cd AlyaBot-MD
+```
+
+```bash
+yarn install
+```
+
+```bash
+npm install
+```
+
+```bash
+npm start
+```
+
+> *Si aparece **(Y/I/N/O/D/Z) [default=N] ?** use la letra **"y"** y luego **"ENTER"** para continuar con la instalación.*
+
+</details>
+
+<details>
+<summary><strong>🦦 Comandos para tener mas tiempo activo</strong> — el Bot</summary>
+
+> *Ejecutar estos comandos dentro de la carpeta AlyaBot-MD*
+```bash
+termux-wake-lock && npm i -g pm2 && pm2 start index.js && pm2 save && pm2 logs 
+``` 
+
+#### Opciones Disponibles
+> *Esto eliminará todo el historial que hayas establecido con PM2:*
+```bash 
+pm2 delete index
+``` 
+
+> *Si tienes cerrado Termux y quiere ver de nuevo la ejecución use:*
+```bash 
+pm2 logs 
+``` 
+
+> *Si desea detener la ejecución de Termux use:*
+```bash 
+pm2 stop index
+``` 
+
+> *Si desea iniciar de nuevo la ejecución de Termux use:*
+```bash 
+pm2 start index
+```
+
+--- 
+
+### En caso de detenerse
+> _Si despues que ya instalastes tu bot y termux te salta en blanco, se fue tu internet o reiniciaste tu celular, solo realizaras estos pasos:_
+```bash
+cd && cd AlyaBot-MD && npm start
+```
+---
+
+### Obtener nuevo inicio de Sessión 
+> *Detén el bot, haz click en el símbolo (ctrl) [default=z] usar la letra "z" + "ENTER" hasta que salga algo verdes similar a: `AlyaBot-MD $`*
+ 
+```bash 
+cd && cd AlyaBot-MD && rm -rf Sessions/Owner && npm start
+```
+</details>
+
+---
 
 ###  Propietario
 [![LMZ](https://github.com/LMZ-MZ1.png?hsize=10)](https://github.com/LMZ-MZ1)

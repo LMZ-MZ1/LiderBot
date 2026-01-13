@@ -7,7 +7,7 @@ export default {
   run: async (client, m, args) => {
     if (!args || !args[0]) {
       return m.reply(
-        '《✧》 Ingrese el *título* de un *vídeo*.',
+        '🍒 Ingrese el *título* de un *vídeo*.',
       )
     }
 
@@ -20,19 +20,19 @@ export default {
       .map((v) => {
         switch (v.type) {
           case 'video':
-            return `➩ *Título ›* *${v.title}* 
+            return `🦋 *Título ›* *${v.title}* 
 
-> ⴵ *Duración ›* ${v.timestamp}
-> ❖ *Subido ›* ${v.ago}
-> ✿ *Vistas ›* ${v.views}
-> ❒ *Url ›* ${v.url}
+> 🌺 *Duración ›* ${v.timestamp}
+> 🦦 *Subido ›* ${v.ago}
+> 🫒 *Vistas ›* ${v.views}
+> 🪶 *Url ›* ${v.url}
 `.trim()
           case 'channel':
             return `
-> ❖ Canal › *${v.name}*
-> ❒ Url › ${v.url}
-> ❀ Subscriptores › ${v.subCountLabel} (${v.subCount})
-> ✿ Videos totales › ${v.videoCount}
+> 🌾 Canal › *${v.name}*
+> 🌱 Url › ${v.url}
+> 🍒 Subscriptores › ${v.subCountLabel} (${v.subCount})
+> 🌽 Videos totales › ${v.videoCount}
 `.trim()
         }
       })

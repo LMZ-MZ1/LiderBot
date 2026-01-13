@@ -8,7 +8,7 @@ export default {
     if (!text) {
       return client.reply(
         m.chat,
-        `《✧》 Ingresa un *término* de búsqueda.`,
+        `🍒 Ingresa un *término* de búsqueda.`,
         m,
       )
     }
@@ -47,7 +47,7 @@ const bannedWords = [
     const nsfwEnabled = global.db.data.chats[m.chat]?.nsfw === true
 
     if (!nsfwEnabled && bannedWords.some((word) => lowerText.includes(word))) {
-      return m.reply('《✧》 Este comando no *permite* búsquedas de contenido *+18* o *NSFW*')
+      return m.reply('🌽 Este comando no *permite* búsquedas de contenido *+18* o *NSFW*')
     }
 
     await m.reply(mess.wait)
@@ -58,7 +58,7 @@ const bannedWords = [
       const res = await fetch(url)
 
       if (!res.ok || !res.headers.get('content-type')?.includes('image')) {
-        return m.reply(`ꕥ No se encontraron resultados para *${text}*`)
+        return m.reply(`🌽 No se encontraron resultados para *${text}*`)
       }
 
       const buffer = await res.buffer()

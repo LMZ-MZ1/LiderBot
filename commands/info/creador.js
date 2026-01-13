@@ -6,17 +6,15 @@ export default {
   async run(client, m) {
     try {
 
-      const number = '5492916450307'
+      const number = '525655125175'
       const jid = number + '@s.whatsapp.net'
 
       const contact = {
         number,
         name: 'Creador Principal 🥗',
         org: dev,
-        email: 'stellarwa.help@gmail.com',
-        region: 'Argentina',
-        website: 'https://api.stellarwa.xyz',
-        note: '🐸 Creador oficial de todo Stellar.'
+        email: 'ablchce@hotmail.com',
+        region: 'México',
       }
 
       const generateVCard = ({ number, name, org, email, region, website, note }) => {

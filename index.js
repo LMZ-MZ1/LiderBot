@@ -64,11 +64,11 @@ let phoneInput = "";
 
 const { say } = cfonts
 
-say('LegnaMetalZoa ', {
+say('LegnaMetalZ\nBARUSH ', {
 align: 'center',           
 gradient: ['red', 'blue'] 
 })
-say('WhatsApp Multi Device, Hecho Con Amor Por Barush|LMZ', {
+say('WhatsApp Multi Device, Hecho Con Amor Por\nBarush|LMZ', {
 font: 'console',
 align: 'center',
 gradient: ['blue', 'magenta']

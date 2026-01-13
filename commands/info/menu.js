@@ -43,7 +43,6 @@ export default {
 → *ᴜsᴇʀs ::* ${users.toLocaleString()}
 → *ᴜʀʟ ::* ${link}
 → *ᴍɪ ᴛɪᴇᴍᴘᴏ ::* ${time}
-→ *sᴏʙʀᴇ ᴍɪ ᴄʀᴇᴀᴅᴏʀ ::* https://zyxljs.stellarwa.xyz
 
 乂 *ʟɪsᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏs* 乂\n`
 

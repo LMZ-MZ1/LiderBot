@@ -1,6 +1,6 @@
 import { getDevice } from '@whiskeysockets/baileys'
 import moment from 'moment-timezone'
-import { commands } from '../../lib/system/comandos.js'
+// ❌ ELIMINADO: import { commands } from '../../lib/system/comandos.js'
 
 export default {
   command: ['allmenu', 'help', 'menu'],
@@ -8,14 +8,23 @@ export default {
   run: async (client, m, args, command, text, prefix) => {
     try {
       const now = new Date()
-      const colombianTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Bogota' }))
+      const colombianTime = new Date(
+        now.toLocaleString('en-US', { timeZone: 'America/Bogota' })
+      )
+
       const tiempo = colombianTime
-        .toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+        .toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric'
+        })
         .replace(/,/g, '')
+
       const tiempo2 = moment.tz('America/Bogota').format('hh:mm A')
 
       const botId = client?.user?.id.split(':')[0] + '@s.whatsapp.net' || ''
       const botSettings = global.db.data.settings[botId] || {}
+
       const botname = botSettings.namebot || ''
       const botname2 = botSettings.namebot2 || ''
       const banner = botSettings.banner || ''
@@ -24,18 +33,28 @@ export default {
       const canalname = botSettings.nameid || ''
       const link = botSettings.link || ''
 
-      const isOficialBot = botId === global.client.user.id.split(':')[0] + '@s.whatsapp.net'
+      const isOficialBot =
+        botId === global.client.user.id.split(':')[0] + '@s.whatsapp.net'
+
       const botType = isOficialBot ? 'Owner' : 'Sub Bot'
       const users = Object.keys(global.db.data.users).length
+      const time = client.uptime
+        ? formatearMs(Date.now() - client.uptime)
+        : 'Desconocido'
 
-      const time = client.uptime ? formatearMs(Date.now() - client.uptime) : "Desconocido"
       const device = getDevice(m.key.id)
 
       let menu = `> *¡ʜᴏʟᴀ!* ${global.db.data.users[m.sender].name}, como está tu día?, mucho gusto mi nombre es *${botname2}*
 
 ︵ׄ⏜︵ׄ⠑ ⏜ 𓊈  🌱  𓊉 ⏜ ⠊︵ֺ⏜︵ֺ
 
-→ *ᴅᴇᴠᴇʟᴏᴘᴇʀ ::* ${owner ? (!isNaN(owner.replace(/@s\.whatsapp\.net$/, '')) ? `${global.db.data.users[owner].name}` : owner) : "Oculto por privacidad"}
+→ *ᴅᴇᴠᴇʟᴏᴘᴇʀ ::* ${
+        owner
+          ? !isNaN(owner.replace(/@s\.whatsapp\.net$/, ''))
+            ? global.db.data.users[owner]?.name
+            : owner
+          : 'Oculto por privacidad'
+      }
 → *ᴛɪᴘᴏ ::* ${botType}
 → *sɪsᴛᴇᴍᴀ/ᴏᴘʀ ::* ${device}
 
@@ -46,13 +65,25 @@ export default {
 
 乂 *ʟɪsᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏs* 乂\n`
 
+      /* =====================================================
+         AQUÍ ESTÁ EL CAMBIO IMPORTANTE
+         Usamos global.comandos (Map del loader)
+      ====================================================== */
+
       const categoryArg = args[0]?.toLowerCase()
       const categories = {}
 
-      for (const command of commands) {
-        const category = command.category || 'otros'
+      const commands = [...global.comandos.values()]
+
+      for (const cmd of commands) {
+        const category = cmd.category || 'otros'
         if (!categories[category]) categories[category] = []
-        categories[category].push(command)
+
+        categories[category].push({
+          aliases: cmd.command,
+          desc: cmd.info?.desc || 'Sin descripción',
+          uso: cmd.info?.uso || ''
+        })
       }
 
       if (categoryArg && !categories[categoryArg]) {
@@ -61,10 +92,17 @@ export default {
 
       for (const [category, cmds] of Object.entries(categories)) {
         if (categoryArg && category.toLowerCase() !== categoryArg) continue
-        const catName = category.charAt(0).toUpperCase() + category.slice(1)
+
+        const catName =
+          category.charAt(0).toUpperCase() + category.slice(1)
+
         menu += `\n .  . ︵ *${catName}*.  ◌Ⳋ𝅄\n`
+
         cmds.forEach((cmd) => {
-          const aliases = cmd.alias.map(a => `${prefix}${a}`).join(' › ')
+          const aliases = cmd.aliases
+            .map(a => `${prefix}${a}`)
+            .join(' › ')
+
           menu += `.꒷🌳.𖦹˙ ${aliases} ${cmd.uso ? `+ ${cmd.uso}` : ''}\n`
           menu += `> ${cmd.desc}\n`
         })
@@ -78,43 +116,14 @@ export default {
           {
             video: { url: banner },
             gifPlayback: true,
-            caption: menu,
-            contextInfo: {
-              mentionedJid: [owner],
-              isForwarded: true,
-              forwardedNewsletterMessageInfo: {
-                newsletterJid: canalid,
-                serverMessageId: '0',
-                newsletterName: canalname
-              }
-            }
+            caption: menu
           },
           { quoted: m }
         )
       } else {
         await client.sendMessage(
           m.chat,
-          {
-            text: menu,
-            contextInfo: {
-              mentionedJid: [owner],
-              isForwarded: true,
-              forwardedNewsletterMessageInfo: {
-                newsletterJid: canalid,
-                serverMessageId: '0',
-                newsletterName: canalname
-              },
-              externalAdReply: {
-                title: botname,
-                body: `${botname2}, Built With 💛 By Stellar`,
-                showAdAttribution: false,
-                thumbnailUrl: banner,
-                mediaType: 1,
-                previewType: 0,
-                renderLargerThumbnail: true
-              }
-            }
-          },
+          { text: menu },
           { quoted: m }
         )
       }
@@ -129,5 +138,13 @@ function formatearMs(ms) {
   const minutos = Math.floor(segundos / 60)
   const horas = Math.floor(minutos / 60)
   const dias = Math.floor(horas / 24)
-  return [dias && `${dias}d`, `${horas % 24}h`, `${minutos % 60}m`, `${segundos % 60}s`].filter(Boolean).join(" ")
+
+  return [
+    dias && `${dias}d`,
+    `${horas % 24}h`,
+    `${minutos % 60}m`,
+    `${segundos % 60}s`
+  ]
+    .filter(Boolean)
+    .join(' ')
 }

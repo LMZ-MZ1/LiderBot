@@ -6,13 +6,13 @@ global.sessionName = 'Sessions/Owner'
 global.version = '^2.0'
 
 global.api = {
-  url: 'https://api.stellarwa.xyz',
+  url: 'https://royaleapi.com/clan/QGVQPY0Y',
   key: 'ApiKey'
 }
 
 global.bot = {
-  api: 'https://api.stellarwa.xyz',
-  web: 'https://studio.stellarwa.xyz'
+  api: 'https://royaleapi.com/clan/QGVQPY0Y',
+  web: 'https://royaleapi.com/clan/QGVQPY0Y',
 }
 
 global.msgglobal = '[Error: *TypeError*] fetch failed'

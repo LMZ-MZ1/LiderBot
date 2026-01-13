@@ -1,16 +1,3 @@
-/*
- # ------------√ ×------------
-    # Agradecimientos :: ZyxlJs
-    # Agradecimientos :: Destroy
-    # Agradecimientos :: AzamiJs
-    # Agradecimientos :: GataDios
-	# Agradecimientos :: LMZ
-
-    - Recuerda dejar los creditos, no quites los creditos de los autores del código!
-    - Puedes modificar esta base a tu gusto, recuerda dejar los creditos correspondiente!
- # ------------√ ×------------
-*/
-
 import "./settings.js"
 import handler from './handler.js'
 import events from './commands/events.js'
@@ -23,21 +10,19 @@ import {
   jidDecode,
   DisconnectReason,
 } from "@whiskeysockets/baileys";
-
+import cfonts from 'cfonts';
 import pino from "pino";
-import crypto from 'crypto';
+import qrcode from "qrcode-terminal";
 import chalk from "chalk";
 import fs from "fs";
 import path from "path";
+import readlineSync from "readline-sync";
+import boxen from 'boxen';
 import readline from "readline";
-import os from "os";
-import qrcode from "qrcode-terminal";
-import parsePhoneNumber from "awesome-phonenumber";
 import { smsg } from "./lib/message.js";
 import db from "./lib/system/database.js";
 import { startSubBot } from './lib/subs.js';
 import { exec, execSync } from "child_process";
-import moment from 'moment-timezone';
 import warReminder from './commands/clash/recordatorio.js';
 
 const log = {
@@ -55,41 +40,40 @@ const log = {
     console.log(chalk.bgRed.white.bold(`ERROR`), chalk.redBright(msg)),
 };
 
-const print = (label, value) =>
-  console.log(
-    `${chalk.green.bold("║")} ${chalk.cyan.bold(label.padEnd(16))}${chalk.magenta.bold(":")} ${value}`,
-  );
-const pairingCode = process.argv.includes("--qr")
-  ? false
-  : process.argv.includes("--pairing-code") || global.pairing_code;
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-const question = (text) => {
-  return new Promise((resolve) => {
-    rl.question(text, (answer) => {
-      resolve(answer.trim());
-    });
-  });
-};
-const usePairingCode = true;
+const askQuestion = readlineSync
+let usarCodigo = false
+let numero = "";
+let phoneInput = "";
 
-const userInfoSyt = () => {
-  try {
-    return os.userInfo().username;
-  } catch (e) {
-    return process.env.USER || process.env.USERNAME || "desconocido";
+  const DIGITS = (s = "") => String(s).replace(/\D/g, "");
+
+  function normalizePhoneForPairing(input) {
+    let s = DIGITS(input);
+    if (!s) return "";
+    if (s.startsWith("0")) s = s.replace(/^0+/, "");
+    if (s.length === 10 && s.startsWith("3")) {
+      s = "57" + s;
+    }
+    if (s.startsWith("52") && !s.startsWith("521") && s.length >= 12) {
+      s = "521" + s.slice(2);
+    }
+    if (s.startsWith("54") && !s.startsWith("549") && s.length >= 11) {
+      s = "549" + s.slice(2);
+    }
+    return s;
   }
-};
 
-console.log(chalk.bold.cyan('Copyright (C) - ') + chalk.bold.red('Barush|LegnaMetalZoa Bot'))
+const { say } = cfonts
 
-const ramInGB = os.totalmem() / (1024 * 1024 * 1024)
-const freeRamInGB = os.freemem() / (1024 * 1024 * 1024)
-const currentTime = new Date().toLocaleString()
-const info = `\n╭─────────────────────────────◉\n│ ${chalk.red.bgBlueBright.bold('         INFORMACIÓN DEL SISTEMA        ')}\n│「  」${chalk.yellow(`SO: ${os.type()}, ${os.release()} - ${os.arch()}`)}\n│「  」${chalk.yellow(`RAM Total: ${ramInGB.toFixed(2)} GB`)}\n│「 💽 」${chalk.yellow(`RAM Libre: ${freeRamInGB.toFixed(2)} GB`)}\n╰─────────────────────────────◉\n\n╭─────────────────────────────◉\n│ ${chalk.red.bgGreenBright.bold('         INFORMACIÓN DEL BOT        ')}\n│「  」${chalk.cyan(`Nombre » LegnaMetalZoa`)}\n│「  」${chalk.cyan(`Versión » 3.0`)}\n│「  」${chalk.cyan(`Descripción » Bot Test 3)}\n│「  」${chalk.cyan(`Autor »Barush|LegnaMetalZoa`)}\n╰─────────────────────────────◉\n\n╭─────────────────────────────◉\n│ ${chalk.red.bgMagenta.bold('        ⏰ HORA ACTUAL        ')}\n│「 🕒 」${chalk.magenta(`${currentTime}`)}\n╰─────────────────────────────◉\n`
-console.log(info)
+say('LegnaMetalZoa \nBarush', {
+align: 'center',           
+gradient: ['red', 'blue'] 
+})
+say('WhatsApp Multi Device, Hecho Con Amor Por LMZ|Barush', {
+font: 'console',
+align: 'center',
+gradient: ['blue', 'magenta']
+})
 
 const BOT_TYPES = [
   { name: 'SubBot', folder: './Sessions/Subs', starter: startSubBot }
@@ -125,6 +109,36 @@ async function loadBots() {
   await loadBots()
 })()
 
+const displayLoadingMessage = () => {
+  console.log(chalk.bold.redBright(`\n\nPor favor, Ingrese el número de WhatsApp.\n` +
+      `${chalk.bold.yellowBright("Ejemplo: +57301******")}\n` +
+      `${chalk.bold.magentaBright('---> ')} `));
+};
+
+if (!fs.existsSync(`./Sessions/Owner/creds.json`)) {
+let lineM = '⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ ⋯ 》'
+const opcion = askQuestion.question(`╭${lineM}  
+┊ ${chalk.blueBright('╭┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅')}
+┊ ${chalk.blueBright('┊')} ${chalk.blue.bgBlue.bold.cyan('MÉTODO DE VINCULACIÓN')}
+┊ ${chalk.blueBright('╰┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅')}   
+┊ ${chalk.blueBright('╭┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅')}     
+┊ ${chalk.blueBright('┊')} ${chalk.green.bgMagenta.bold.yellow('¿CÓMO DESEA CONECTARSE?')}
+┊ ${chalk.blueBright('┊')} ${chalk.bold.redBright('⇢  Opción 1:')} ${chalk.greenBright('Código QR.')}
+┊ ${chalk.blueBright('┊')} ${chalk.bold.redBright('⇢  Opción 2:')} ${chalk.greenBright('Código de 8 digitos.')}
+┊ ${chalk.blueBright('╰┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅')}
+┊ ${chalk.blueBright('╭┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅')}     
+┊ ${chalk.blueBright('┊')} ${chalk.italic.magenta('Escriba sólo el número de')}
+┊ ${chalk.blueBright('┊')} ${chalk.italic.magenta('la opción para conectarse.')}
+┊ ${chalk.blueBright('╰┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅')} 
+╰${lineM}\n${chalk.bold.magentaBright('---> ')}`)
+usarCodigo = opcion === "2";
+if (usarCodigo) {
+displayLoadingMessage()
+phoneInput = askQuestion.question("")
+numero = normalizePhoneForPairing(phoneInput)
+}
+}
+
 async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState(global.sessionName)
   const { version, isLatest } = await fetchLatestBaileysVersion();
@@ -135,7 +149,7 @@ async function startBot() {
   const clientt = makeWASocket({
     version,
     logger,
-    printQRInTerminal: true,
+    printQRInTerminal: false,
   //  browser: ['Windows', 'Chrome'],
     browser: Browsers.macOS('Chrome'),
     auth: {
@@ -154,23 +168,15 @@ async function startBot() {
   client.isInit = false
   client.ev.on("creds.update", saveCreds)
 
-  if (!client.authState.creds.registered) {
-      log.warn("Ingrese su número de WhatsApp\n")
-       log.info("Ejemplo: 57301××××××")
-        console.log(chalk.yellow('--->'))
-        const phoneNumber = await question("")
-    try {
-      log.info("Solicitando código de emparejamiento...")
-      const pairing = await client.requestPairingCode(phoneNumber)
-      log.success(
-        `Código de emparejamiento: ${chalk.cyanBright(pairing)} (expira en 15s)`,
-      )
-    } catch (err) {
-      log.error("Error al solicitar el código de emparejamiento:", err);
-      exec("rm -rf ./Sessions/Owner/*")
-      process.exit(1)
-    }
-  }
+if (usarCodigo && !state.creds.registered) {
+setTimeout(async () => {
+try {
+const pairing = await client.requestPairingCode(numero);
+const codeBot = pairing?.match(/.{1,4}/g)?.join("-") || pairing
+return console.log(chalk.bold.white(chalk.bgMagenta(`🪶  CÓDIGO DE VINCULACIÓN:`)), chalk.bold.white(chalk.white(codeBot)));
+} catch {}
+}, 3000);
+}
 
   client.sendText = (jid, text, quoted = "", options) =>
     client.sendMessage(jid, { text: text, ...options }, { quoted })
@@ -183,6 +189,10 @@ async function startBot() {
       isNewLogin,
       receivedPendingNotifications,
     } = update
+
+    if (qr && !usarCodigo) {
+      qrcode.generate(qr, { small: true })
+    }
 
     if (connection === "close") {
       const reason = lastDisconnect?.error?.output?.statusCode || 0;
@@ -225,23 +235,10 @@ async function startBot() {
     }
 
     if (connection == "open") {
-                  console.log(
-        chalk.bold.greenBright(
-          '\n✩ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ 𝗢𝗡𝗟𝗜𝗡𝗘 ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✩\n│\n│★ CONEXIÓN EXITOSA CON WHATSAPP 🌷\n│\n✩ ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈✦ ✅  ✦┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ ✩'
-        )
-      )
+     // client.uptime = Date.now();
+ console.log(boxen(chalk.bold(' ¡CONECTADO CON WHATSAPP! '), { borderStyle: 'round', borderColor: 'green', title: chalk.green.bold('● CONEXIÓN ●'), titleAlignment: 'center', float: 'center' }))
     }
-
-
-    if (isNewLogin) {
-      log.info("Nuevo dispositivo detectado")
-    }
-
-    if (receivedPendingNotifications == "true") {
-      log.warn("Por favor espere aproximadamente 1 minuto...")
-      client.ev.flush()
-    }
-  });
+})
 
   let m
   client.ev.on("messages.upsert", async ({ messages }) => {

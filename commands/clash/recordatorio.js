@@ -1,41 +1,29 @@
-import cron from 'node-cron';
+import cron from 'node-cron'
 
 export default function warReminder(client) {
-  // ID del grupo donde se enviarán los recordatorios
-  const grupoId = '120363149228419135@g.us';
+  const grupoId = '120363149228419135@g.us'
 
-  // Horarios: 9:00, 13:00 y 19:00, de jueves a domingo
-  const horarios = [
-  '0 9 * * 4-7',              // 9:00
-  '0 13 * * 4-7',             // 13:00
-  '5 19 * * 4-7',             // 14:00
-  '8 19 * * 4-7',             // 14:00
-  '10 19 * * 4-7',             // 14:00
-  '15 19 * * 4-7',             // 14:00
-  '18 19 * * 4-7',             // 14:00
-  '0 19 * * 4-7'              // 19:00
-];
-
-  // Mensajes posibles para más entusiasmo
   const mensajes = [
-    '🛡️⚔️ ¡Es hora de las batallas de guerra! Buena suerte, equipo, ¡a darlo todo! ⚔️🛡️',
-    '🛡️⚔️ ¡No olviden sus guerras, guerreros! ¡Que las victorias estén de su lado! ⚔️🛡️',
-    '🛡️⚔️ ¡Hora de jugar la guerra del clan! Mucha suerte a todos, ¡demuestren su valor! ⚔️🛡️'
-  ];
+    '⚔️🛡️ ¡GUERRA DEL CLAN! No olviden atacar 💥',
+    '🔥⚔️ ¡Hora de la guerra! Vamos equipo',
+    '🛡️⚔️ Últimos ataques, ¡a darlo todo!'
+  ]
 
-  horarios.forEach(horario => {
-    cron.schedule(horario, async () => {
-      // Escoge un mensaje aleatorio
-      const mensaje = mensajes[Math.floor(Math.random() * mensajes.length)];
+  console.log('⏰ Recordatorios activos (todos los días 7:40–8:00 pm)')
 
+  cron.schedule(
+    '40,43,46,49,52,55,58 19 * * *',
+    async () => {
+      const mensaje = mensajes[Math.floor(Math.random() * mensajes.length)]
       try {
-        await client.sendMessage(grupoId, { text: mensaje });
-        console.log(`Recordatorio enviado al grupo ${grupoId} ✅`);
+        await client.sendMessage(grupoId, { text: mensaje })
+        console.log('✅ Recordatorio enviado')
       } catch (e) {
-        console.error('Error enviando recordatorio:', e);
+        console.error('❌ Error enviando recordatorio:', e)
       }
-    }, {
-      timezone: 'America/Mexico_City' // Hora local de México
-    });
-  });
+    },
+    {
+      timezone: 'America/Mexico_City'
+    }
+  )
 }

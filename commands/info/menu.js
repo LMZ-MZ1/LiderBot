@@ -1,10 +1,14 @@
 import { getDevice } from '@whiskeysockets/baileys'
 import moment from 'moment-timezone'
-// ❌ ELIMINADO: import { commands } from '../../lib/system/comandos.js'
 
 export default {
   command: ['allmenu', 'help', 'menu'],
   category: 'info',
+  info: {
+    desc: 'Muestra el menú de comandos',
+    uso: ''
+  },
+
   run: async (client, m, args, command, text, prefix) => {
     try {
       const now = new Date()
@@ -22,16 +26,14 @@ export default {
 
       const tiempo2 = moment.tz('America/Bogota').format('hh:mm A')
 
-      const botId = client?.user?.id.split(':')[0] + '@s.whatsapp.net' || ''
-      const botSettings = global.db.data.settings[botId] || {}
+      const botId = client?.user?.id.split(':')[0] + '@s.whatsapp.net'
+      const settings = global.db.data.settings[botId] || {}
 
-      const botname = botSettings.namebot || ''
-      const botname2 = botSettings.namebot2 || ''
-      const banner = botSettings.banner || ''
-      const owner = botSettings.owner || ''
-      const canalid = botSettings.id || ''
-      const canalname = botSettings.nameid || ''
-      const link = botSettings.link || ''
+      const botname = settings.namebot || ''
+      const botname2 = settings.namebot2 || ''
+      const banner = settings.banner || ''
+      const owner = settings.owner || ''
+      const link = settings.link || ''
 
       const isOficialBot =
         botId === global.client.user.id.split(':')[0] + '@s.whatsapp.net'
@@ -44,17 +46,11 @@ export default {
 
       const device = getDevice(m.key.id)
 
-      let menu = `> *¡ʜᴏʟᴀ!* ${global.db.data.users[m.sender].name}, como está tu día?, mucho gusto mi nombre es *${botname2}*
+      let menu = `> *¡ʜᴏʟᴀ!* ${global.db.data.users[m.sender]?.name || 'Usuario'}, mucho gusto mi nombre es *${botname2}*
 
 ︵ׄ⏜︵ׄ⠑ ⏜ 𓊈  🌱  𓊉 ⏜ ⠊︵ֺ⏜︵ֺ
 
-→ *ᴅᴇᴠᴇʟᴏᴘᴇʀ ::* ${
-        owner
-          ? !isNaN(owner.replace(/@s\.whatsapp\.net$/, ''))
-            ? global.db.data.users[owner]?.name
-            : owner
-          : 'Oculto por privacidad'
-      }
+→ *ᴅᴇᴠᴇʟᴏᴘᴇʀ ::* ${owner || 'Oculto'}
 → *ᴛɪᴘᴏ ::* ${botType}
 → *sɪsᴛᴇᴍᴀ/ᴏᴘʀ ::* ${device}
 
@@ -63,24 +59,22 @@ export default {
 → *ᴜʀʟ ::* ${link}
 → *ᴍɪ ᴛɪᴇᴍᴘᴏ ::* ${time}
 
-乂 *ʟɪsᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏs* 乂\n`
+乂 *ʟɪsᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏs* 乂
+`
 
       /* =====================================================
-         AQUÍ ESTÁ EL CAMBIO IMPORTANTE
-         Usamos global.comandos (Map del loader)
-      ====================================================== */
+         USAMOS GLOBAL.COMANDOS (Map real del loader)
+      ===================================================== */
 
       const categoryArg = args[0]?.toLowerCase()
       const categories = {}
 
-      const commands = [...global.comandos.values()]
-
-      for (const cmd of commands) {
+      for (const [name, cmd] of global.comandos.entries()) {
         const category = cmd.category || 'otros'
         if (!categories[category]) categories[category] = []
 
         categories[category].push({
-          aliases: cmd.command,
+          name,
           desc: cmd.info?.desc || 'Sin descripción',
           uso: cmd.info?.uso || ''
         })
@@ -91,33 +85,25 @@ export default {
       }
 
       for (const [category, cmds] of Object.entries(categories)) {
-        if (categoryArg && category.toLowerCase() !== categoryArg) continue
+        if (categoryArg && category !== categoryArg) continue
 
         const catName =
           category.charAt(0).toUpperCase() + category.slice(1)
 
         menu += `\n .  . ︵ *${catName}*.  ◌Ⳋ𝅄\n`
 
-        cmds.forEach((cmd) => {
-          const aliases = cmd.aliases
-            .map(a => `${prefix}${a}`)
-            .join(' › ')
-
-          menu += `.꒷🌳.𖦹˙ ${aliases} ${cmd.uso ? `+ ${cmd.uso}` : ''}\n`
+        cmds.forEach(cmd => {
+          menu += `.꒷🌳.𖦹˙ ${prefix}${cmd.name} ${cmd.uso ? `+ ${cmd.uso}` : ''}\n`
           menu += `> ${cmd.desc}\n`
         })
       }
 
       menu += `\n> *${botname2} desarrollado por ZyxlJs* ૮(˶ᵔᵕᵔ˶)ა`
 
-      if (banner.endsWith('.mp4') || banner.endsWith('.gif') || banner.endsWith('.webm')) {
+      if (banner && /\.(mp4|gif|webm)$/i.test(banner)) {
         await client.sendMessage(
           m.chat,
-          {
-            video: { url: banner },
-            gifPlayback: true,
-            caption: menu
-          },
+          { video: { url: banner }, gifPlayback: true, caption: menu },
           { quoted: m }
         )
       } else {
@@ -127,8 +113,10 @@ export default {
           { quoted: m }
         )
       }
+
     } catch (e) {
-      await m.reply('Error: ' + e.message)
+      console.error(e)
+      await m.reply('❌ Error al generar el menú:\n' + e.message)
     }
   }
 }

@@ -3,6 +3,10 @@ import { resolveLidToRealJid } from "../../lib/utils.js"
 export default {
   command: ['balance', 'bal'],
   category: 'rpg',
+  info: {
+    desc: 'Muestra tu balance o la de un usuario',
+    uso: ''
+  },
     run: async (client, m, args, command, text, prefix) => {
     const db = global.db.data
     const chatId = m.chat

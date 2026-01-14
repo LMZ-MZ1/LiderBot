@@ -1,6 +1,10 @@
 export default {
   command: ['intercambiarpoke', 'poketrade', 'tradep', 'tradepoke'],
   category: 'pokes',
+  info: {
+    desc: 'Proponer un intercambio de Pokémon',
+    uso: ''
+  },
   run: async (client, m, args, command, text, prefix) => {
 
     if (global.db.data.chats[m.chat].adminonly || !global.db.data.chats[m.chat].pokes)

@@ -1,6 +1,10 @@
 export default {
   command: ['aceptarpoke', 'aceptarpokemon'],
   category: 'pokes',
+  info: {
+    desc: 'Aceptar una propuesta de intercambio Pokémon',
+    uso: ''
+  },
   run: async (client, m, args, command, text, prefix) => {
 
     if (global.db.data.chats[m.chat].adminonly || !global.db.data.chats[m.chat].pokes)

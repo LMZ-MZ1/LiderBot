@@ -3,6 +3,10 @@ import { resolveLidToRealJid } from "../../lib/utils.js"
 export default {
   command: ['steal', 'rob', 'robar'],
   category: 'rpg',
+  info: {
+    desc: 'Intenta robar coins a un usuario.',
+    uso: ''
+  },
   run: async (client, m) => {
     const db = global.db.data
     const chatId = m.chat

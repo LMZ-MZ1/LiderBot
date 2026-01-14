@@ -1,6 +1,10 @@
 export default {
   command: ['crime'],
   category: 'rpg',
+  info: {
+    desc: 'Intenta cometer un crimen.", "alias',
+    uso: ''
+  },
   run: async (client, m) => {
     const chat = global.db.data.chats[m.chat]
     const user = chat.users[m.sender]

@@ -1,6 +1,10 @@
 export default {
   command: ['ritual'],
   category: 'rpg',
+  info: {
+    desc: 'Invoca un ritual misterioso con recompensas o maldiciones',
+    uso: ''
+  },
   run: async (client, m) => {
     const botId = client?.user?.id.split(':')[0] + '@s.whatsapp.net'
     const botSettings = global.db.data.settings[botId]

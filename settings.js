@@ -7,7 +7,7 @@ global.version = '^2.0'
 
 global.api = {
   url: 'https://api.stellarwa.xyz',
-  key: 'ApiKey'
+  key: 'stellar-Qc1xUJME'
 }
 
 global.bot = {

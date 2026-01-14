@@ -3,6 +3,10 @@ import fetch from 'node-fetch';
 export default {
   command: ['tiktok', 'tt'],
   category: 'downloader',
+  info: {
+    desc: 'Descarga videos de TikTok',
+    uso: ''
+  },
   run: async (client, m, args, command) => {
 
     if (!args.length) {

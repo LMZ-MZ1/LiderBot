@@ -1,6 +1,10 @@
 export default {
   command: ['fb', 'facebook'],
   category: 'downloader',
+  info: {
+    desc: 'Descarga videos de facebook',
+    uso: ''
+  },
   run: async (client, m, args, command) => {
 
     if (!args[0]) {

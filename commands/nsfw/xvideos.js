@@ -3,6 +3,10 @@ import { getBuffer } from '../../lib/message.js'
 
 export default {
   command: ["xvideos"],
+  info: {
+    desc: 'Busca y descarga videos desde XVideos',
+    uso: ''
+  },
   run: async (client, m, args) => {
 
     if (!db.data.chats[m.chat].nsfw) return m.reply('🍒 Los comandos de *NSFW* están desáctivados en este Grupo.')

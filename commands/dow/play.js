@@ -9,6 +9,10 @@ const isYTUrl = (url) => /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/i
 export default {
   command: ['play', 'mp3', 'ytmp3', 'ytaudio', 'playaudio'],
   category: 'downloader',
+  info: {
+    desc: 'Descarga música de youtube',
+    uso: ''
+  },
   run: async (client, m, args) => {
     try {
       if (!args[0]) {

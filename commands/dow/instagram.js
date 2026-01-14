@@ -3,6 +3,10 @@ import fetch from 'node-fetch'
 export default {
   command: ['instagram', 'ig'],
   category: 'downloader',
+  info: {
+    desc: 'Descarga videos de instagram.',
+    uso: ''
+  },
   run: async (client, m, args, command) => {
 
     const url = args[0]

@@ -8,6 +8,10 @@ const isYTUrl = (url) => /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/i
 export default {
   command: ['play2', 'mp4', 'ytmp4', 'ytvideo', 'playvideo'],
   category: 'downloader',
+  info: {
+    desc: 'Descarga videos de youtube',
+    uso: ''
+  },
   run: async (client, m, args) => {
     try {
       if (!args[0]) {

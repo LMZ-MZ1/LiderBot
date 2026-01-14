@@ -3,6 +3,10 @@ import fetch from 'node-fetch';
 export default {
   command: ['gelbooru', 'gbooru'],
   category: 'nsfw',
+  info: {
+    desc: 'Busca y descarga videos desde XVideos',
+    uso: ''
+  },
   run: async (client, m, args) => {
     const chatId = m.chat
     const db = global.db

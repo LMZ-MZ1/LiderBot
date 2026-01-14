@@ -17,6 +17,10 @@ function isValidMediafireUrl(url) {
 export default {
   command: ['mediafire', 'mf'],
   category: 'downloader',
+  info: {
+    desc: 'Descarga archivos de mediafire',
+    uso: ''
+  },
   run: async (client, m, args) => {
     if (!args[0]) {
       return m.reply('🍒 Ingresa el *enlace* de *Mediafire* o una *palabra clave*.')

@@ -3,6 +3,10 @@ import fetch from 'node-fetch';
 export default {
   category: 'nsfw',
   command: ['danbooru', 'dbooru'],
+  info: {
+    desc: 'Buscar imágenes en danbooru',
+    uso: ''
+  },
   run: async (client, m, args) => {
     const chatId = m.chat
     const db = global.db

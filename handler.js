@@ -173,7 +173,55 @@ export default async (client, m) => {
 
   // FIX: permitir comandos privados
   if (m.chat && !m.chat.endsWith('g.us')) {
-    const allowedInPrivateForUsers = ['report', 'reporte', 'sug', 'suggest', 'invite', 'invitar', 'setusername', 'setpfp', 'setimage', 'setstatus', 'reload', 'setname', 'setbotname', 'setmenubanner', 'setbanner', 'setbotcurrency', 'setbotchannel', 'setchannel', 'setbotowner', 'setlink', 'setbotlink', 'setbotprefix', 'seticon']
+    const allowedInPrivateForUsers = [
+  'report', 'reporte', 'sug', 'suggest', 'invite', 'invitar',
+  'setusername', 'setpfp', 'setimage', 'setstatus', 'reload',
+  'setname', 'setbotname', 'setmenubanner', 'setbanner',
+  'setbotcurrency', 'setbotchannel', 'setchannel', 'setbotowner',
+  'setlink', 'setbotlink', 'setbotprefix', 'seticon',
+  'getpic', 'ai', 'help',
+
+  // IA
+  'ia', 'chatgpt',
+
+  // Downloader
+  'fb', 'facebook', 'instagram', 'ig', 'mediafire', 'mf', 
+  'play', 'mp3', 'ytmp3', 'ytaudio', 'playaudio', 'play2', 
+  'mp4', 'ytmp4', 'ytvideo', 'playvideo', 'tiktok', 'tt',
+
+  // Grupo
+  'bot', 'clear', 'closet', 'demote', 'gp', 'groupinfo', 
+  'hidetag', 'tag', 'kick', 'link', 'open', 'welcome', 
+  'bienvenidas', 'alerts', 'alertas', 'nsfw', 'antilink', 
+  'antienlaces', 'antilinks', 'rpg', 'economy', 'economia', 
+  'gacha', 'adminonly', 'onlyadmin', 'pokes', 'promote', 
+  'setgpname', 'setgpbanner', 'setgpdesc', 'setprimary', 
+  'delwarn', 'setwarnlimit', 'warn', 'warns',
+
+  // Info
+  'ayuda', 'cafi', 'owner', 'creador', 'infobot', 'infosocket', 
+  'info', 'allmenu', 'menu', 'ping', 'p', 'status',
+
+  // Nsfw
+  'danbooru', 'dbooru', 'gelbooru', 'gbooru', 'anal', 'cum', 
+  'undress', 'encuerar', 'fuck', 'coger', 'spank', 'nalgada', 
+  'lickpussy', 'fap', 'paja', 'grope', 'sixnine', '69', 
+  'suckboobs', 'grabboobs', 'blowjob', 'bj', 'boobjob', 'footjob',
+
+  // Uncategorized
+  'xnxx', 'xvideos', 'eval', 'e', 'r', 'restart', 'fix', 'update',
+
+  // Search
+  'aptoide', 'apk', 'apkdl', 'imagen', 'img', 'image', 
+  'pinterest', 'pin', 'tiktoksearch', 'ttsearch', 'tts', 
+  'ytsearch', 'search',
+
+  // Socket
+  'bots', 'sockets', 'leave', 'logout', 'self', 'code',
+
+  // Utils
+  'get', 'pfp', 'hd', 'setmeta', 'sticker', 's', 'tourl', 'translate'
+]
     const owners = global.db.data.settings[selfId].owner
     // Si es chat privado, permitir todos los comandos para dueños
     if (

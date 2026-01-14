@@ -7,6 +7,10 @@ const COMMANDS_URL = 'https://zyxljs.stellarwa.xyz/test';
 export default {
   command: ['ayuda'],
   category: 'info',
+    info: {
+    desc: 'Muestra información detallada sobre un comando específico.',
+    uso: ''
+  },
   run: async (client, m, args) => {
     try {
       const res = await fetch(COMMANDS_URL);

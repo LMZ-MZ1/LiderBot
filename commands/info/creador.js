@@ -11,7 +11,7 @@ export default {
 
       const contact = {
         number,
-        name: 'Creador Principal 🥗',
+        name: 'Barush | LMZ (tu papi)',
         org: dev,
         email: 'ablchce@hotmail.com',
         region: 'México',

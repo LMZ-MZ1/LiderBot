@@ -48,9 +48,7 @@ export default {
 
       let menu = `> *¡ʜᴏʟᴀ!* ${global.db.data.users[m.sender]?.name || 'Usuario'}, mucho gusto mi nombre es *${botname2}*
 
-︵ׄ⏜︵ׄ⠑ ⏜ 𓊈  🌱  𓊉 ⏜ ⠊︵ֺ⏜︵ֺ
-
-→ *ᴅᴇᴠᴇʟᴏᴘᴇʀ ::* ${owner || 'Oculto'}
+→ *ᴅᴇᴠᴇʟᴏᴘᴇʀ ::* ${owner || 'LMZ'}
 → *ᴛɪᴘᴏ ::* ${botType}
 → *sɪsᴛᴇᴍᴀ/ᴏᴘʀ ::* ${device}
 
@@ -81,7 +79,7 @@ export default {
       }
 
       if (categoryArg && !categories[categoryArg]) {
-        return m.reply(`🌱 La categoría *${categoryArg}* no fue encontrada.`)
+        return m.reply(`La categoría *${categoryArg}* no fue encontrada.`)
       }
 
       for (const [category, cmds] of Object.entries(categories)) {
@@ -93,12 +91,12 @@ export default {
         menu += `\n .  . ︵ *${catName}*.  ◌Ⳋ𝅄\n`
 
         cmds.forEach(cmd => {
-          menu += `.꒷🌳.𖦹˙ ${prefix}${cmd.name} ${cmd.uso ? `+ ${cmd.uso}` : ''}\n`
+          menu += `• ${prefix}${cmd.name} ${cmd.uso ? `+ ${cmd.uso}` : ''}\n`
           menu += `> ${cmd.desc}\n`
         })
       }
 
-      menu += `\n> *${botname2} desarrollado por ZyxlJs* ૮(˶ᵔᵕᵔ˶)ა`
+      menu += `\n> *${botname2} desarrollado por LMZ-MZ1`
 
       if (banner && /\.(mp4|gif|webm)$/i.test(banner)) {
         await client.sendMessage(
